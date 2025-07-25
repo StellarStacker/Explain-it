@@ -1,0 +1,29 @@
+{
+  "name": "explainit-jargon-buster",
+  "description": "Transform complex jargon into simple, understandable language with AI-powered explanations",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "jargon",
+    "explanation",
+    "simplification",
+    "gemini",
+    "tailwind",
+    "vite"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "vite": "^7.0.4"
+  }
+}
