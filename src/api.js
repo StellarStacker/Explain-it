@@ -56,7 +56,19 @@ export const makeGeminiAPICall = async (text, apiUrl, apiKey) => {
     
     try {
       const errorData = JSON.parse(errorText);
-      const errorMessage = errorData.error?.message || `API request failed with status ${response.status}`;
+      let errorMessage = errorData.error?.message || `API request failed with status ${response.status}`;
+      
+      // Provide more specific error messages
+      if (response.status === 400) {
+        errorMessage = "API model not available. The system is using an unsupported model.";
+      } else if (response.status === 403) {
+        errorMessage = "Invalid API key. Please check your Gemini API key in the .env file.";
+      } else if (response.status === 429) {
+        errorMessage = "API rate limit exceeded. Please try again in a few moments.";
+      } else if (response.status === 404) {
+        errorMessage = "API model not found. Trying alternative models...";
+      }
+      
       console.error('API Error Details:', errorData);
       throw new Error(errorMessage);
     } catch (jsonError) {
@@ -98,9 +110,10 @@ export const callGeminiAPI = async (text, config) => {
   
   // Try with multiple models if needed (fallback mechanism)
   const modelOptions = [
-    GEMINI_MODEL,     // Try user's preferred model first
-    'gemini-pro',     // Fallback to standard model
-    'gemini-1.5-flash' // Another option
+    'gemini-2.0-flash',        // Latest fast model
+    'gemini-2.5-flash',        // Most advanced model
+    'gemini-2.0-flash-001',    // Stable version
+    'gemini-2.5-flash-lite'    // Lightweight option
   ];
   
   let lastError = null;

@@ -4,7 +4,7 @@ import { callGeminiAPI } from './api.js'
 // App Configuration
 const CONFIG = {
   GEMINI_API_KEY: import.meta.env.VITE_GEMINI_API_KEY || 'YOUR_GEMINI_API_KEY_HERE',
-  GEMINI_MODEL: 'gemini-pro', // Temporarily using standard Gemini Pro instead of 1.5 Pro due to API issues
+  GEMINI_MODEL: 'gemini-2.0-flash', // Using the latest available Gemini 2.0 Flash model
   GEMINI_API_BASE: 'https://generativelanguage.googleapis.com/v1/models/',
   get GEMINI_API_URL() { return `${this.GEMINI_API_BASE}${this.GEMINI_MODEL}:generateContent`; },
   MAX_INPUT_LENGTH: parseInt(import.meta.env.VITE_MAX_INPUT_LENGTH) || 5000,
@@ -106,7 +106,7 @@ const formatExplanation = (text) => {
   // Convert markdown-like formatting to HTML
   return text
     // Bold text
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary-600 dark:text-primary-400">$1</strong>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary-700 dark:text-primary-400">$1</strong>')
     // Italic text
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
     // Bullet points
