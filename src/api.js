@@ -1,4 +1,5 @@
 // API Functions for ExplainIt
+import { CONFIG } from './config.js'
 
 // Helper function to make the actual API call
 export const makeGeminiAPICall = async (text, apiUrl, apiKey) => {
@@ -83,7 +84,7 @@ export const makeGeminiAPICall = async (text, apiUrl, apiKey) => {
 };
 
 // Main API function with fallback mechanism
-export const callGeminiAPI = async (text, config) => {
+export const callGeminiAPI = async (text, config = CONFIG) => {
   const { GEMINI_API_KEY, GEMINI_API_BASE, GEMINI_MODEL } = config;
   
   // For tracking which model was actually used

@@ -1,0 +1,90 @@
+import React, { useEffect } from 'react'
+import { Header } from './components/Header'
+import { InputSection } from './components/InputSection'
+import { OutputSection } from './components/OutputSection'
+import { LoadingSection } from './components/LoadingSection'
+import { ErrorSection } from './components/ErrorSection'
+import { Footer } from './components/Footer'
+import { BackgroundEffects } from './components/BackgroundEffects'
+import { useTheme } from './hooks/useTheme'
+import { useExplainer } from './hooks/useExplainer'
+import { CONFIG } from './config'
+import './style.css'
+
+export default function App() {
+  const MAX_INPUT_LENGTH = CONFIG.MAX_INPUT_LENGTH
+  const { theme, toggleTheme } = useTheme('dark')
+  const {
+    input,
+    setInput,
+    output,
+    isLoading,
+    error,
+    generationTime,
+    feedback,
+    setFeedback,
+    explain,
+    clearInput
+  } = useExplainer()
+
+  const handleFeedback = (type) => {
+    setFeedback(type)
+    // You can send this feedback to analytics or a server
+    console.log('User feedback:', type)
+  }
+
+  return (
+    <div className={`relative min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'dark' : ''}`}>
+      <BackgroundEffects />
+
+      {/* Main App Container */}
+      <div id="app" className="relative z-10 min-h-screen flex flex-col">
+        {/* Header */}
+        <Header theme={theme} onThemeToggle={toggleTheme} />
+
+        {/* Main Content */}
+        <main className="flex-grow">
+          {/* Input Section */}
+          <InputSection
+            input={input}
+            onInputChange={setInput}
+            onExplain={explain}
+            isLoading={isLoading}
+            maxLength={MAX_INPUT_LENGTH}
+          />
+
+          {/* Conditional Rendering of Output Sections */}
+          {error && (
+            <ErrorSection
+              error={error}
+              onRetry={clearInput}
+            />
+          )}
+
+          {isLoading && (
+            <LoadingSection />
+          )}
+
+          {output && !isLoading && (
+            <OutputSection
+              output={output}
+              generationTime={generationTime}
+              onCopy={() => console.log('Copied to clipboard')}
+              onFeedback={handleFeedback}
+            />
+          )}
+
+          {/* Initial State Message */}
+          {!output && !isLoading && !error && (
+            <div className="mt-12 max-w-4xl mx-auto px-4 text-center text-gray-600 dark:text-gray-400 py-8">
+              <p>Enter some complex text above and click "Explain It" to get started!</p>
+            </div>
+          )}
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </div>
+  )
+}
