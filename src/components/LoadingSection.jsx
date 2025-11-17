@@ -6,8 +6,8 @@ export const LoadingSection = () => {
       <div className="bg-white/10 dark:bg-white/5 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-white/10">
         <div className="text-center">
           <div>
-            <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">AI is working its magic...</p>
-            <div className="relative w-full h-1 bg-gray-300/30 dark:bg-gray-700/30 rounded-full overflow-hidden">
+            <p className="text-slate-700 dark:text-slate-300 font-medium mb-2">AI is working its magic...</p>
+            <div className="relative w-full h-1 bg-slate-300/30 dark:bg-slate-700/30 rounded-full overflow-hidden">
               <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full animate-pulse" style={{
                 animation: 'slide 2s infinite',
                 width: '30%'
@@ -32,9 +32,13 @@ export const LoadingSection = () => {
             }
           `}</style>
 
-          <p className="text-gray-600 dark:text-gray-500 text-sm mt-4 max-w-md mx-auto">
-            Converting complex jargon into simple, clear language that anyone can understand
-          </p>
+                <div className="text-center space-y-4">
+          <br></br>
+        <h3 className="text-1.5xl text-slate-900 dark:text-slate-200">
+          Converting complex jargon into simple, clear language that anyone can understand
+        </h3>
+        <br></br>
+      </div>
 
           {/* Animated dots */}
           <div className="mt-6 flex justify-center gap-1">
