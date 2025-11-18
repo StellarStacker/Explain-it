@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { tempRegistrationStore } from '../utils/tempRegistrationStore'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080'
+console.log(`API Base URL: ${API_BASE_URL}`)
 const API = axios.create({
   baseURL: `${API_BASE_URL}/api`,
   headers: {
@@ -88,6 +90,78 @@ const authService = {
       }
     } catch (error) {
       const message = error.response?.data?.error || error.response?.data?.message || 'Registration failed'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Pre-register user (store registration data temporarily and send OTP)
+   * Database insertion happens AFTER email verification
+   */
+  async preRegister(userData) {
+    try {
+      // Store registration data temporarily (before verification)
+      tempRegistrationStore.store(userData.email, userData)
+
+      // Send OTP to email
+      const response = await API.post('/auth/send-otp', {
+        email: userData.email,
+      })
+
+      return {
+        success: true,
+        message: 'OTP sent to your email. Please verify to complete registration.',
+      }
+    } catch (error) {
+      const message = error.response?.data?.error || 'Failed to send OTP'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Complete registration after OTP verification
+   * This is called after user verifies their OTP
+   */
+  async completeRegistration(email, otp) {
+    try {
+      // First verify the OTP with backend
+      const verifyResponse = await API.post('/auth/verify-otp', {
+        email,
+        otp,
+      })
+
+      // Get the stored registration data
+      const registrationData = tempRegistrationStore.get(email)
+      
+      if (!registrationData) {
+        throw new Error('Registration data not found. Please register again.')
+      }
+
+      // Now create the user account with the verified email
+      const registerResponse = await API.post('/auth/register', {
+        email: registrationData.email,
+        password: registrationData.password,
+        firstName: registrationData.firstName,
+        lastName: registrationData.lastName,
+      })
+
+      const { token, user } = registerResponse.data
+
+      // Store token and user info
+      localStorage.setItem('authToken', token)
+      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('provider', user.provider || 'local')
+
+      // Clear temporary registration data
+      tempRegistrationStore.remove(email)
+
+      return {
+        success: true,
+        token,
+        user,
+      }
+    } catch (error) {
+      const message = error.response?.data?.error || error.message || 'Registration completion failed'
       throw new Error(message)
     }
   },
@@ -214,6 +288,83 @@ const authService = {
 
       // Clear axios default header
       delete API.defaults.headers.common['Authorization']
+    }
+  },
+
+  /**
+   * Send OTP to email
+   */
+  async sendOTP(email) {
+    try {
+      const response = await API.post('/auth/send-otp', {
+        email,
+      })
+      return response.data
+    } catch (error) {
+      const message = error.response?.data?.error || 'Failed to send OTP'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Verify OTP
+   */
+  async verifyOTP(email, otp) {
+    try {
+      const response = await API.post('/auth/verify-otp', {
+        email,
+        otp,
+      })
+      return response.data
+    } catch (error) {
+      const message = error.response?.data?.error || 'OTP verification failed'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Resend OTP
+   */
+  async resendOTP(email) {
+    try {
+      const response = await API.post('/auth/resend-otp', {
+        email,
+      })
+      return response.data
+    } catch (error) {
+      const message = error.response?.data?.error || 'Failed to resend OTP'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Verify email with OTP (legacy - kept for compatibility)
+   */
+  async verifyEmail(email, otp) {
+    try {
+      const response = await API.post('/auth/verify-otp', {
+        email,
+        otp,
+      })
+      return response.data
+    } catch (error) {
+      const message = error.response?.data?.error || error.response?.data?.message || 'Email verification failed'
+      throw new Error(message)
+    }
+  },
+
+  /**
+   * Resend verification email (legacy - kept for compatibility)
+   */
+  async resendVerificationEmail(email) {
+    try {
+      const response = await API.post('/auth/resend-otp', {
+        email,
+      })
+      return response.data
+    } catch (error) {
+      const message = error.response?.data?.error || error.response?.data?.message || 'Failed to resend verification email'
+      throw new Error(message)
     }
   },
 

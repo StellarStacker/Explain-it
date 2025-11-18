@@ -36,7 +36,7 @@ export const InputSection = ({
             onChange={(e) => onInputChange(e.target.value)}
             onKeyDown={handleKeyDown}
             className="w-full px-6 py-4 bg-white/90 dark:bg-black/30 border-2 border-gray-300 dark:border-gray-600 rounded-2xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 dark:focus:ring-cyan-400/20 resize-none transition-all duration-300"
-            placeholder="Enter the complex text you want simplified... For example: 'The implementation leverages a microservices architecture with containerized deployments orchestrated through Kubernetes, utilizing asynchronous message queuing patterns for inter-service communication.'"
+            placeholder="Enter the complex text you want simplified... For example: 'Microservices architecture'"
             disabled={isLoading}
           ></textarea>
 
