@@ -6,8 +6,7 @@
 
 ### Transform Complex Jargon into Simple Language with AI ✨
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-6366f1?style=for-the-badge)](https://your-demo-url.com)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-6366f1?style=for-the-badge)](https://explainit.netlify.app)
 [![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/StellarStacker)
 
 </div>
@@ -46,7 +45,7 @@ Perfect for students, professionals, researchers, or anyone who encounters confu
 
 Experience ExplainIt in action:
 
-**👉 [Try ExplainIt Now](https://your-demo-url.com)**
+**👉 [Try ExplainIt Now](https://explainit.netlify.app)**
 
 ### Example Transformation
 
@@ -74,12 +73,15 @@ Experience ExplainIt in action:
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Google AI](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+
 
 </div>
 
 ### Core Technologies
 
 - **Frontend Framework**: Vanilla JavaScript (ES6+) for maximum performance
+- **Backend Frameword**: SpringBoot (3.5.7) for maximum perfomance
 - **Styling**: Tailwind CSS with custom design system
 - **Build Tool**: Vite for lightning-fast development and optimized builds
 - **AI Integration**: Google Gemini API for intelligent text processing
