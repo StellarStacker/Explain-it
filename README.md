@@ -2,7 +2,10 @@
 
 <div align="center">
 
-![ExplainIt Logo](https://via.placeholder.com/200x200/6366f1/ffffff?text=ExplainIt)
+<p align="center">
+  <img src="public/explainit.png" alt="ExplainIt Logo" width="120" />
+</p>
+
 
 ### Transform Complex Jargon into Simple Language with AI ✨
 
