@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google'
 import { useAuthStore } from '../store/authStore'
+import authService from '../services/authService'
 
 export const Register = () => {
   const navigate = useNavigate()
@@ -119,11 +120,23 @@ export const Register = () => {
 
     try {
       setIsLoading(true)
-      await register(formData.email, formData.password, formData.name)
-      // Redirect to login page after successful registration
-      navigate('/login')
+      
+      // Pre-register user and send OTP (don't create DB user yet)
+      await authService.preRegister({
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.name.split(' ')[0] || formData.name,
+        lastName: formData.name.split(' ')[1] || '',
+      })
+
+      // Redirect to email verification page with email
+      navigate('/verify-email', {
+        state: {
+          email: formData.email,
+        }
+      })
     } catch (err) {
-      setFormError(err.message || 'Registration failed')
+      setFormError(err.message || 'Failed to send OTP. Please try again.')
     } finally {
       setIsLoading(false)
     }
