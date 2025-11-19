@@ -180,20 +180,20 @@ export const EmailVerification = () => {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 w-full max-w-md">
-        <div className="bg-white/10 dark:bg-slate-900/50 backdrop-blur-2xl rounded-2xl p-8 shadow-2xl border border-white/20 dark:border-slate-700/50">
+      <div className="relative z-10 w-full max-w-md px-4 sm:px-0">
+        <div className="bg-white/10 dark:bg-slate-900/50 backdrop-blur-2xl rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/20 dark:border-slate-700/50">
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full mb-3 sm:mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8z" />
                 <path d="M9 13a1 1 0 1 0 2 0 1 1 0 0 0-2 0m4 0a1 1 0 1 0 2 0 1 1 0 0 0-2 0" fill="rgba(0,0,0,0.5)" />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-2">Verify Your Email</h2>
-            <p className="text-gray-300 text-sm">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Verify Your Email</h2>
+            <p className="text-gray-300 text-xs sm:text-sm">
               We've sent a 6-digit code to<br />
-              <span className="text-cyan-400 font-semibold">{email}</span>
+              <span className="text-cyan-400 font-semibold break-all">{email}</span>
             </p>
           </div>
 
@@ -206,8 +206,8 @@ export const EmailVerification = () => {
 
           {/* OTP Input Form */}
           <form onSubmit={handleSubmit}>
-            {/* OTP Input Fields */}
-            <div className="flex gap-2 justify-center mb-6">
+            {/* OTP Input Fields - Responsive */}
+            <div className="flex gap-1 sm:gap-2 justify-center mb-6">
               {otp.map((digit, index) => (
                 <input
                   key={index}
@@ -218,7 +218,7 @@ export const EmailVerification = () => {
                   onChange={(e) => handleOtpChange(index, e.target.value)}
                   onKeyDown={(e) => handleOtpKeyDown(index, e)}
                   maxLength="1"
-                  className="w-12 h-14 text-center text-2xl font-bold rounded-lg bg-white/10 dark:bg-slate-800 border-2 border-white/20 dark:border-slate-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300"
+                  className="w-10 h-12 sm:w-12 sm:h-14 text-lg sm:text-2xl font-bold rounded-lg bg-white/10 dark:bg-slate-800 border-2 border-white/20 dark:border-slate-600 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 text-center"
                   placeholder="0"
                   disabled={isLoading}
                 />
@@ -229,7 +229,7 @@ export const EmailVerification = () => {
             <button
               type="submit"
               disabled={isLoading || otp.join('').length !== 6}
-              className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-cyan-500/50 disabled:shadow-none"
+              className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-semibold rounded-lg text-sm sm:text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-cyan-500/50 disabled:shadow-none"
             >
               {isLoading ? (
                 <>
@@ -246,18 +246,18 @@ export const EmailVerification = () => {
           </form>
 
           {/* Resend OTP */}
-          <div className="mt-6 text-center">
-            <p className="text-gray-400 text-sm mb-3">Didn't receive the code?</p>
+          <div className="mt-4 sm:mt-6 text-center">
+            <p className="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3">Didn't receive the code?</p>
             {canResend ? (
               <button
                 onClick={handleResendOtp}
                 disabled={isResending}
-                className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="text-cyan-400 hover:text-cyan-300 font-semibold text-sm sm:text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isResending ? 'Resending...' : 'Resend OTP'}
               </button>
             ) : (
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-xs sm:text-sm">
                 Resend in <span className="text-cyan-400 font-semibold">{timer}s</span>
               </p>
             )}
