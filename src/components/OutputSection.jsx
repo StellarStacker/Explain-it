@@ -1,5 +1,40 @@
 import React, { useState, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { useSpeech } from '../utils/speechSynthesis'
+
+// Custom markdown components for enhanced readability
+const markdownComponents = {
+  h1: ({ node, ...props }) => <h1 className="text-2xl font-bold mb-4 mt-6 text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-300/30 pb-2" {...props} />,
+  h2: ({ node, ...props }) => <h2 className="text-xl font-bold mb-3 mt-5 text-cyan-600 dark:text-cyan-400" {...props} />,
+  h3: ({ node, ...props }) => <h3 className="text-lg font-bold mb-3 mt-4 text-purple-600 dark:text-purple-400" {...props} />,
+  h4: ({ node, ...props }) => <h4 className="text-base font-bold mb-2 mt-3 text-purple-500 dark:text-purple-400" {...props} />,
+  p: ({ node, ...props }) => <p className="mb-5 leading-8 text-gray-900 dark:text-gray-100" {...props} />,
+  ul: ({ node, ...props }) => <ul className="mb-5 ml-6 space-y-3 list-disc" {...props} />,
+  ol: ({ node, ...props }) => <ol className="mb-5 ml-6 space-y-3 list-decimal" {...props} />,
+  li: ({ node, ...props }) => <li className="text-gray-900 dark:text-gray-100 marker:text-cyan-600 dark:marker:text-cyan-400 marker:font-bold" {...props} />,
+  blockquote: ({ node, ...props }) => (
+    <blockquote className="my-6 border-l-4 border-cyan-500 dark:border-cyan-400 bg-cyan-50/50 dark:bg-cyan-900/20 px-5 py-3 rounded-r-lg italic text-gray-800 dark:text-gray-200" {...props} />
+  ),
+  code: ({ inline, ...props }) => 
+    inline ? (
+      <code className="bg-gradient-to-r from-cyan-100/80 to-purple-100/80 dark:from-cyan-900/50 dark:to-purple-900/50 px-2 py-1 rounded-md text-xs font-mono text-cyan-700 dark:text-cyan-300 font-semibold" {...props} />
+    ) : (
+      <code className="block bg-gray-900 dark:bg-black text-gray-100 p-4 rounded-lg overflow-x-auto my-5 font-mono text-sm leading-relaxed border border-gray-700" {...props} />
+    ),
+  pre: ({ node, ...props }) => <pre className="my-5 rounded-lg overflow-x-auto" {...props} />,
+  table: ({ node, ...props }) => (
+    <div className="overflow-x-auto my-5">
+      <table className="w-full border-collapse border border-gray-300 dark:border-gray-600" {...props} />
+    </div>
+  ),
+  thead: ({ node, ...props }) => <thead className="bg-cyan-600/20 dark:bg-cyan-900/50" {...props} />,
+  th: ({ node, ...props }) => <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-bold text-cyan-700 dark:text-cyan-300" {...props} />,
+  td: ({ node, ...props }) => <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-900 dark:text-gray-100" {...props} />,
+  strong: ({ node, ...props }) => <strong className="font-bold text-cyan-700 dark:text-cyan-300 bg-cyan-100/40 dark:bg-cyan-900/30 px-1 rounded" {...props} />,
+  em: ({ node, ...props }) => <em className="italic text-purple-600 dark:text-purple-400 not-italic font-medium" {...props} />,
+  a: ({ node, ...props }) => <a className="text-cyan-600 dark:text-cyan-400 underline hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors font-medium" target="_blank" rel="noopener noreferrer" {...props} />,
+  hr: ({ node, ...props }) => <hr className="my-6 border-t-2 border-gradient-to-r from-cyan-300/30 to-purple-300/30 dark:from-cyan-700/30 dark:to-purple-700/30" {...props} />,
+}
 
 export const OutputSection = ({ 
   output, 
@@ -65,11 +100,11 @@ export const OutputSection = ({
         </label>
 
         {/* Output Text */}
-        <div className="prose dark:prose-invert max-w-none mb-6">
-          <div className="bg-gradient-to-br from-cyan-50/50 to-purple-50/50 dark:from-cyan-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-cyan-200/30 dark:border-cyan-800/30">
-            <p className="text-gray-900 dark:text-gray-100 leading-relaxed whitespace-pre-wrap">
-              {output}
-            </p>
+        <div className="mb-6">
+          <div className="bg-gradient-to-br from-cyan-50/50 to-purple-50/50 dark:from-cyan-900/20 dark:to-purple-900/20 rounded-xl p-8 border border-cyan-200/30 dark:border-cyan-800/30">
+            <div className="text-gray-900 dark:text-gray-100 leading-8">
+              <ReactMarkdown components={markdownComponents}>{output}</ReactMarkdown>
+            </div>
           </div>
         </div>
 
