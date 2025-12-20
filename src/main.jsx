@@ -5,7 +5,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { router } from './router/index'
 import './style.css'
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID'
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
+if (!GOOGLE_CLIENT_ID) {
+  throw new Error('VITE_GOOGLE_CLIENT_ID is not defined')
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
