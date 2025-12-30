@@ -133,14 +133,14 @@ export const Login = () => {
           </h1>
           <p className="text-gray-400 mt-2">Welcome back</p>
         </div>
-         <marquee behavior="scroll" direction="left" scrollamount="6" style={{
+         {/* <marquee behavior="scroll" direction="left" scrollamount="6" style={{
           backgroundColor: '#ffe5e5',
           color: '#b30000',
           padding: '10px',
           fontWeight: 'bold',
         }}>
         ⚠️ Notice: This website is temporarily unavailable due to insufficient Azure credits. Please check back later.
-        </marquee>
+        </marquee> */}
 
         {/* Login Card */}
         <div className="bg-white/10 dark:bg-white/5 backdrop-blur-2xl rounded-2xl p-8 shadow-2xl border border-white/20 dark:border-white/10">
