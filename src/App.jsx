@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Header } from './components/Header'
 import { InputSection } from './components/InputSection'
 import { OutputSection } from './components/OutputSection'
@@ -13,7 +13,7 @@ import './style.css'
 
 export default function App() {
   const MAX_INPUT_LENGTH = CONFIG.MAX_INPUT_LENGTH
-  const { theme, toggleTheme } = useTheme('dark')
+  useTheme()
   const {
     input,
     setInput,
@@ -33,13 +33,13 @@ export default function App() {
   }
 
   return (
-    <div className={`relative min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'dark' : ''}`}>
+    <div className="dark relative min-h-screen">
       <BackgroundEffects />
 
       {/* Main App Container */}
       <div id="app" className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
-        <Header theme={theme} onThemeToggle={toggleTheme} />
+        <Header />
 
         {/* Main Content */}
         <main className="flex-grow">
@@ -74,7 +74,7 @@ export default function App() {
 
           {/* Initial State Message */}
           {!output && !isLoading && !error && (
-            <div className="mt-12 max-w-4xl mx-auto px-4 text-center text-gray-600 dark:text-gray-400 py-8">
+            <div className="mt-12 max-w-4xl mx-auto px-4 text-center text-gray-400 py-8">
               <p>Enter some complex text above and click "Explain It" to get started!</p>
             </div>
           )}

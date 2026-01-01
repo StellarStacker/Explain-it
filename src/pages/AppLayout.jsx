@@ -8,7 +8,7 @@ import App from '../App'
 export const AppLayout = () => {
   const navigate = useNavigate()
   const { logout, user } = useAuthStore()
-  const { isDark, toggleTheme } = useTheme()
+  useTheme()
 
   const handleLogout = () => {
     logout()
@@ -20,24 +20,6 @@ export const AppLayout = () => {
       {/* Fixed UI Elements rendered via Portal to bypass relative positioning */}
       {createPortal(
         <>
-          {/* Dark/Light Mode Toggle - Top Left - Professional Transparent - TRULY FIXED - Responsive */}
-          <button
-            onClick={toggleTheme}
-            className="fixed md:top-6 md:left-6 top-3 left-3 z-50 p-2 rounded-lg bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/15 hover:bg-white/20 dark:hover:bg-white/10 hover:border-white/40 dark:hover:border-white/25 transition-all duration-300 shadow-lg hover:shadow-xl group pointer-events-auto flex items-center justify-center"
-            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {isDark ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-yellow-300 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6m-17.78 7.78l4.24-4.24m5.08-5.08l4.24-4.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-slate-300 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.64 15.95a.75.75 0 0 0-.5-.9A8.05 8.05 0 0 1 9.95 2.86a.75.75 0 0 0-.9-.5.75.75 0 0 0-.5.9 9.5 9.5 0 1 0 14.59 5.19.75.75 0 0 0 .4-.9z" />
-              </svg>
-            )}
-          </button>
-
           {/* Compact Profile Box - Top Right - Transparent & Professional - TRULY FIXED - RESPONSIVE */}
           <div
             className="fixed md:top-6 md:right-6 top-3 right-3 z-50 bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-lg p-1.5 md:p-3 border border-white/20 dark:border-white/15 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10 hover:border-white/30 dark:hover:border-white/20 group pointer-events-auto flex items-center"
