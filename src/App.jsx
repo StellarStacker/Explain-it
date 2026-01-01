@@ -20,7 +20,6 @@ export default function App() {
     output,
     isLoading,
     error,
-    generationTime,
     feedback,
     setFeedback,
     explain,
@@ -68,7 +67,6 @@ export default function App() {
           {output && !isLoading && (
             <OutputSection
               output={output}
-              generationTime={generationTime}
               onCopy={() => console.log('Copied to clipboard')}
               onFeedback={handleFeedback}
             />

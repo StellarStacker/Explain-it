@@ -38,7 +38,6 @@ const markdownComponents = {
 
 export const OutputSection = ({ 
   output, 
-  generationTime, 
   onCopy,
   onFeedback 
 }) => {
@@ -111,9 +110,6 @@ export const OutputSection = ({
         {/* Action Buttons and Info */}
         <div className="mt-6 pt-6 border-t border-gray-300/30 dark:border-white/10 flex flex-wrap justify-between items-center text-xs text-gray-600 dark:text-gray-400 gap-3">
           <div className="flex items-center gap-4">
-            <div>
-              Generated in <span className="text-cyan-600 dark:text-cyan-400 font-medium">{generationTime.toFixed(2)}</span> seconds
-            </div>
             <div className="flex gap-2">
               <button 
                 onClick={() => onFeedback?.('up')}

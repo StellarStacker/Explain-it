@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react'
-import { callGeminiAPI } from '../api.js'
 import { CONFIG } from '../config.js'
 
 export const useExplainer = () => {
@@ -7,10 +6,10 @@ export const useExplainer = () => {
   const [output, setOutput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [generationTime, setGenerationTime] = useState(0)
   const [feedback, setFeedback] = useState(null)
 
   const MAX_INPUT_LENGTH = CONFIG.MAX_INPUT_LENGTH
+  const BACKEND_URL = CONFIG.BACKEND_URL || 'http://localhost:8080'
 
   const validateInput = useCallback((text) => {
     if (!text.trim()) {
@@ -28,26 +27,27 @@ export const useExplainer = () => {
       validateInput(input)
       setIsLoading(true)
 
-      const startTime = performance.now()
-      const response = await callGeminiAPI(input)
-      const endTime = performance.now()
+      // Call backend API for generation
+      const response = await fetch(`${BACKEND_URL}/api/ai/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: input })
+      })
 
-      setGenerationTime((endTime - startTime) / 1000)
-      
-      // Extract the text from the API response
-      let extractedText = ''
-      if (response.candidates && response.candidates.length > 0) {
-        const candidate = response.candidates[0]
-        if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
-          extractedText = candidate.content.parts[0].text || ''
-        }
+      if (!response.ok) {
+        const errorData = await response.text()
+        throw new Error(errorData || `API request failed with status ${response.status}`)
       }
-      
-      if (!extractedText) {
+
+      const generatedText = await response.text()
+
+      if (!generatedText) {
         throw new Error('No response text received from API')
       }
-      
-      setOutput(extractedText)
+
+      setOutput(generatedText)
       setFeedback(null)
     } catch (err) {
       console.error('Error in explain:', err)
@@ -56,7 +56,7 @@ export const useExplainer = () => {
     } finally {
       setIsLoading(false)
     }
-  }, [input, validateInput])
+  }, [input, validateInput, BACKEND_URL])
 
   const clearInput = useCallback(() => {
     setInput('')
@@ -70,7 +70,6 @@ export const useExplainer = () => {
     output,
     isLoading,
     error,
-    generationTime,
     feedback,
     setFeedback,
     explain,
