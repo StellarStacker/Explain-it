@@ -166,15 +166,11 @@ const explainText = async () => {
     const endTime = performance.now()
     const generationTime = ((endTime - startTime) / 1000).toFixed(1)
     
-    console.log('Complete API response:', response);
-    
     if (!response.candidates || response.candidates.length === 0) {
-      console.error('API response missing candidates array:', response);
       throw new Error('No explanation generated. Please try again.')
     }
     
     if (!response.candidates[0]?.content?.parts?.[0]?.text) {
-      console.error('Unexpected API response structure:', response);
       throw new Error('Invalid response format. Please try again.')
     }
     
@@ -223,22 +219,16 @@ const explainText = async () => {
     // Show success toast
     showToast('Explanation generated successfully!', 'success')
     
-    console.log('✅ Explanation generation completed successfully')
-    
   } catch (error) {
-    console.error('Error explaining text:', error)
-    
     // Create a more user-friendly error message based on the error
     let userFriendlyMessage = error.message;
     
     if (error.message.includes('responseType')) {
       userFriendlyMessage = "API configuration error. The system is having trouble processing your request.";
-      console.error('Likely issue with responseType parameter in the API call');
     } else if (error.message.includes('API key')) {
       userFriendlyMessage = "API key issue. Please check your API key configuration.";
     } else if (error.message.includes('model') || error.message.includes('gemini-1.5-pro')) {
       userFriendlyMessage = "API model not available. The system is using an unsupported model.";
-      console.error('Likely issue with the model name: ' + CONFIG.GEMINI_MODEL);
     }
     
     elements.errorMessage.textContent = userFriendlyMessage
@@ -255,11 +245,9 @@ const explainText = async () => {
     
   } finally {
     // Reset button state
-    console.log('🔄 Resetting button state...')
     isProcessing = false
     elements.explainBtn.disabled = false
     elements.explainBtn.querySelector('span').innerHTML = originalBtnContent
-    console.log('✅ Button state reset complete')
   }
 }
 
@@ -284,7 +272,6 @@ const copyToClipboard = async () => {
     }, 2000)
     
   } catch (error) {
-    console.error('Failed to copy text:', error)
     // Fallback for older browsers
     const textArea = document.createElement('textarea')
     textArea.value = elements.explanationText.textContent
@@ -633,7 +620,6 @@ const initializeTheme = () => {
 
 // Check environment variables
 const checkEnvironment = () => {
-  console.log('Checking environment variables...')
   const envVars = {
     VITE_GEMINI_API_KEY: import.meta.env.VITE_GEMINI_API_KEY || 'Not set',
     VITE_APP_NAME: import.meta.env.VITE_APP_NAME || 'Not set',
@@ -641,20 +627,11 @@ const checkEnvironment = () => {
     NODE_ENV: import.meta.env.MODE || 'Not set',
   }
   
-  console.log('Environment variables:', {
-    ...envVars,
-    VITE_GEMINI_API_KEY: envVars.VITE_GEMINI_API_KEY === 'Not set' 
-      ? 'Not set' 
-      : `Set (${envVars.VITE_GEMINI_API_KEY.substring(0, 5)}...${envVars.VITE_GEMINI_API_KEY.slice(-4)})`
-  })
-  
   return envVars.VITE_GEMINI_API_KEY !== 'Not set' && envVars.VITE_GEMINI_API_KEY !== 'YOUR_GEMINI_API_KEY_HERE'
 }
 
 // App Initialization
 const initializeApp = () => {
-  console.log('🚀 ExplainIt - The Jargon Buster initialized!')
-  
   // Check environment variables
   const isApiKeySet = checkEnvironment()
   
@@ -674,10 +651,7 @@ const initializeApp = () => {
   
   // Check if API key is configured
   if (!isApiKeySet) {
-    console.warn('⚠️ Demo mode: Add your Gemini API key to .env file for real AI explanations')
     showToast('⚠️ Running in demo mode. Add your Gemini API key in .env file for real AI results.', 'warning')
-  } else {
-    console.log('✅ API key configured')
   }
 }
 

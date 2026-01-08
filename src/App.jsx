@@ -29,7 +29,6 @@ export default function App() {
   const handleFeedback = (type) => {
     setFeedback(type)
     // You can send this feedback to analytics or a server
-    console.log('User feedback:', type)
   }
 
   return (
@@ -67,7 +66,7 @@ export default function App() {
           {output && !isLoading && (
             <OutputSection
               output={output}
-              onCopy={() => console.log('Copied to clipboard')}
+              onCopy={() => {}}
               onFeedback={handleFeedback}
             />
           )}

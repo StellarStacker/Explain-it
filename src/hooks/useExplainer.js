@@ -50,7 +50,6 @@ export const useExplainer = () => {
       setOutput(generatedText)
       setFeedback(null)
     } catch (err) {
-      console.error('Error in explain:', err)
       setError(err.message || 'An error occurred')
       setOutput('')
     } finally {

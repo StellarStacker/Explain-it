@@ -52,18 +52,15 @@ export const useSpeech = () => {
 
         // Event handlers - simple and robust
         utterance.onstart = () => {
-          console.log('✓ Speech started')
           if (onStart) onStart()
         }
 
         utterance.onend = () => {
-          console.log('✓ Speech ended')
           if (onEnd) onEnd()
           currentUtterance = null
         }
 
         utterance.onerror = (event) => {
-          console.error('✗ Speech error:', event.error)
           if (event.error !== 'interrupted') {
             if (onError) onError(event.error)
           }
@@ -73,7 +70,6 @@ export const useSpeech = () => {
         currentUtterance = utterance
         
         // Start speaking
-        console.log('Starting speech synthesis with', cleanText.length, 'characters')
         synth.speak(utterance)
       }, 100)
 
