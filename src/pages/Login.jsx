@@ -119,10 +119,26 @@ export const Login = () => {
 
       {/* Main Container */}
       <div className="w-full max-w-md relative z-10">
-        {/* Logo/Brand */}
-        <div className="text-center mb-8">
-          <div className="inline-block mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/')}
+          className="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10"
+          aria-label="Go back to home"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span className="text-sm font-medium">Back</span>
+        </button>
+
+        {/* Logo/Brand - Clickable */}
+        <button
+          onClick={() => navigate('/')}
+          className="text-center mb-8 block w-full cursor-pointer group"
+          aria-label="Go back to home"
+        >
+          <div className="inline-block mb-4 group-hover:scale-105 transition-transform">
+            <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-shadow">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 2c1.104 0 2 .896 2 2v2c0 .552.448 1 1 1h3c1.104 0 2 .896 2 2v1c0 1.104.896 2 2 2h1c.552 0 1 .448 1 1v2c0 .552-.448 1-1 1h-1c-1.104 0-2 .896-2 2v3c0 1.104-.896 2-2 2H7c-1.104 0-2-.896-2-2v-3c0-1.104-.896-2-2-2H2c-.552 0-1-.448-1-1v-2c0-.552.448-1 1-1h1c1.104 0 2-.896 2-2V8c0-1.104.896-2 2-2h3c.552 0 1-.448 1-1V4c0-1.104.896-2 2-2z"></path>
               </svg>
@@ -132,7 +148,7 @@ export const Login = () => {
             ExplainIt
           </h1>
           <p className="text-gray-400 mt-2">Welcome back</p>
-        </div>
+        </button>
          {/* <marquee behavior="scroll" direction="left" scrollamount="6" style={{
           backgroundColor: '#ffe5e5',
           color: '#b30000',

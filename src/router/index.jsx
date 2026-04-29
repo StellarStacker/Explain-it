@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { LandingPage } from '../pages/landing/LandingPage'
 import { AppLayout } from '../pages/AppLayout'
 import { Login } from '../pages/Login'
 import { Register } from '../pages/Register'
@@ -8,7 +9,7 @@ import { ProtectedRoute } from './ProtectedRoute'
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/explain-it" replace />
+    element: <LandingPage />
   },
   {
     path: '/login',
@@ -32,6 +33,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <Navigate to="/explain-it" replace />
+    element: <Navigate to="/" replace />
   }
 ])
