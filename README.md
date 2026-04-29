@@ -464,7 +464,7 @@ MIT License -- Copyright (c) 2026 Minus One Enterprise
 <br />
 <br />
 
-Built and maintained by **[Minus One Enterprise](https://github.com/StellarStacker)**
+Built and maintained by **[Minus One Enterprise](https://github.com/Minus-one-enterprise)**
 
 Licensed under [MIT](LICENSE)
 
