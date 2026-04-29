@@ -6,6 +6,7 @@ import { FeaturesSection } from './FeaturesSection'
 import { HowItWorksSection } from './HowItWorksSection'
 import { DemoSection } from './DemoSection'
 import { TechSection, CTASection, LandingFooter } from './BottomSections'
+import { StarSection } from './StarSection'
 import '../LandingPage.css'
 
 export const LandingPage = () => {
@@ -55,6 +56,12 @@ export const LandingPage = () => {
 
         <div className="reveal-section">
           <DemoSection />
+        </div>
+
+        <div className="section-divider" />
+
+        <div className="reveal-section">
+          <StarSection />
         </div>
 
         <div className="section-divider" />
