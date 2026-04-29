@@ -422,3 +422,9 @@
   border: 1px solid rgba(200, 200, 230, 0.4);
   color: rgba(30, 20, 60, 0.8);
 }
+
+/* Star toast progress bar */
+@keyframes toast-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}

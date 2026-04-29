@@ -7,6 +7,7 @@ import { HowItWorksSection } from './HowItWorksSection'
 import { DemoSection } from './DemoSection'
 import { TechSection, CTASection, LandingFooter } from './BottomSections'
 import { StarSection } from './StarSection'
+import { StarToast } from './StarToast'
 import '../LandingPage.css'
 
 export const LandingPage = () => {
@@ -76,6 +77,9 @@ export const LandingPage = () => {
 
         <LandingFooter />
       </div>
+
+      {/* LinkedIn-style star notification toast */}
+      <StarToast />
     </div>
   )
 }
