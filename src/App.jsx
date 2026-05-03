@@ -6,14 +6,12 @@ import { LoadingSection } from './components/LoadingSection'
 import { ErrorSection } from './components/ErrorSection'
 import { Footer } from './components/Footer'
 import { BackgroundEffects } from './components/BackgroundEffects'
-import { useTheme } from './hooks/useTheme'
 import { useExplainer } from './hooks/useExplainer'
 import { CONFIG } from './config'
 import './style.css'
 
 export default function App() {
   const MAX_INPUT_LENGTH = CONFIG.MAX_INPUT_LENGTH
-  const { theme, toggleTheme } = useTheme('dark')
   const {
     input,
     setInput,
@@ -34,13 +32,13 @@ export default function App() {
   }
 
   return (
-    <div className={`relative min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'dark' : ''}`}>
+    <div className="relative min-h-screen transition-colors duration-300 dark">
       <BackgroundEffects />
 
       {/* Main App Container */}
       <div id="app" className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
-        <Header theme={theme} onThemeToggle={toggleTheme} />
+        <Header />
 
         {/* Main Content */}
         <main className="flex-grow">

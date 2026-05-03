@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Header = ({ theme, onThemeToggle }) => {
+export const Header = () => {
   return (
     <header className="text-center py-6 md:py-12 relative md:pt-12 pt-32">
       {/* Logo and Title */}

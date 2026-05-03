@@ -45,7 +45,7 @@ export const HeroSection = () => (
       <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto" style={{ animation: 'slide-up 1.4s ease forwards' }}>
         {[
           { value: '10K+', label: 'Texts Simplified' },
-          { value: '<2s', label: 'Avg Response' },
+          { value: '<10s', label: 'Avg Response' },
           { value: '50+', label: 'Fields Covered' },
           { value: '99.9%', label: 'Uptime' },
         ].map((s, i) => (

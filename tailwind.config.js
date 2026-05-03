@@ -13,26 +13,7 @@ module.exports = {
         'neon-pink': '#ff0080',
         'cyber-dark': '#0a0a0f',
         'cyber-gray': '#1a1a2e',
-        
-        // Add colors for light mode
-        'pastel-blue': '#a5d8ff',
-        'pastel-purple': '#d8b4fe',
-        'pastel-pink': '#fbcfe8',
-        
-        // Primary color scale for consistent highlighting
-        'primary': {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
-          950: '#2e1065',
-        },
+        // Remove light mode colors
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

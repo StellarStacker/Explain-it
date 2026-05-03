@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export const LandingNav = ({ isDark, toggleTheme }) => {
+export const LandingNav = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -37,14 +37,6 @@ export const LandingNav = ({ isDark, toggleTheme }) => {
 
         {/* Right side */}
         <div className="flex items-center gap-3">
-          <button onClick={toggleTheme} className="p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all" title="Toggle theme">
-            {isDark ? (
-              <svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3m0 16v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M1 12h3m16 0h3M4.22 19.78l2.12-2.12M18.36 5.64l2.12-2.12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-            ) : (
-              <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-            )}
-          </button>
-
           <Link to="/login" className="hidden md:inline-flex px-5 py-2.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-purple-600 to-violet-600 text-white no-underline hover:shadow-lg hover:shadow-purple-500/30 transition-all hover:-translate-y-0.5">
             Get Started
           </Link>
