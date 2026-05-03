@@ -12,12 +12,12 @@ export const HeroSection = () => (
       {/* Badge */}
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8" style={{ animation: 'slide-up 0.6s ease forwards' }}>
         <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span className="text-sm font-medium text-purple-300 dark:text-purple-300">Powered by Google Gemini AI</span>
+        <span className="text-sm font-medium text-purple-300">Powered by Google Gemini AI</span>
       </div>
 
       {/* Heading */}
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6" style={{ animation: 'slide-up 0.8s ease forwards' }}>
-        <span className="text-slate-900 dark:text-white">Decode Any</span>
+        <span className="text-white">Decode Any</span>
         <br />
         <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
           Complex Jargon
@@ -25,7 +25,7 @@ export const HeroSection = () => (
       </h1>
 
       {/* Subtitle */}
-      <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed" style={{ animation: 'slide-up 1s ease forwards' }}>
+      <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed" style={{ animation: 'slide-up 1s ease forwards' }}>
         Transform dense technical language, academic terminology, and industry-specific text into clear, beginner-friendly explanations instantly.
       </p>
 

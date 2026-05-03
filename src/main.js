@@ -10,10 +10,9 @@ const CONFIG = {
   MAX_INPUT_LENGTH: parseInt(import.meta.env.VITE_MAX_INPUT_LENGTH) || 5000,
   ANIMATION_DURATION: 300,
   APP_NAME: import.meta.env.VITE_APP_NAME || 'ExplainIt',
-  DEFAULT_THEME: 'dark', // dark or light
+  DEFAULT_THEME: 'dark', // dark theme only
   PARTICLE_COLORS: {
     dark: ['#00f5ff', '#bf00ff', '#ff0080'],
-    light: ['#00a5ff', '#7000ff', '#ff0080']
   }
 }
 
@@ -27,9 +26,6 @@ const elements = {
   explanationText: document.getElementById('explanation-text'),
   copyBtn: document.getElementById('copy-btn'),
   errorMessage: document.getElementById('error-message'),
-  themeToggle: document.getElementById('theme-toggle'),
-  sunIcon: document.getElementById('sun-icon'),
-  moonIcon: document.getElementById('moon-icon'),
 }
 
 // State Management

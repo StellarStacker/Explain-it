@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import { useTheme } from '../../hooks/useTheme'
 import { LandingNav } from './LandingNav'
 import { HeroSection } from './HeroSection'
 import { FeaturesSection } from './FeaturesSection'
@@ -11,8 +10,6 @@ import { StarToast } from './StarToast'
 import '../LandingPage.css'
 
 export const LandingPage = () => {
-  const { theme, toggleTheme } = useTheme('dark')
-  const isDark = theme === 'dark'
   const sectionsRef = useRef([])
 
   // Intersection Observer for reveal animations
@@ -35,9 +32,9 @@ export const LandingPage = () => {
   }, [])
 
   return (
-    <div className={`landing-page ${isDark ? 'dark' : 'light'}`}>
+    <div className="landing-page dark">
       <div className="landing-hero-bg min-h-screen">
-        <LandingNav isDark={isDark} toggleTheme={toggleTheme} />
+        <LandingNav />
 
         <HeroSection />
 
